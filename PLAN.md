@@ -45,8 +45,8 @@ Source links:
 - https://www.synapse.org/Synapse:syn25829067 (BraTS 2021 on Synapse)
 
 **Not verified yet (each has a hands-on check in a session):**
-- The exact name and columns of the file that maps BraTS 2021 IDs to earlier BraTS years. It is on Synapse, possibly named `BraTS21-17_Mapping.csv` or `BraTS2023_2017_GLI_Mapping.xlsx`. Checked in Session 2.
-- Whether the TCIA Aspera package lets you download single cases. Checked in Session 2.
+- ~~The exact name and columns of the mapping file.~~ Answered in Session 2: `BraTS2023_2017_GLI_Mapping.xlsx` (Synapse syn51615438, in the BraTS 2023 project, not the 2021 one). Columns in `docs/DATA_ACCESS.md` 8.3.
+- ~~Whether the TCIA Aspera package lets you download single cases.~~ Answered in Session 2: single files can be selected in the browser listing; an actual transfer (needs the Aspera client) is tested in Buffer B1.
 - NiiVue's left-right handling and phone performance. Checked in Sessions 18 and 34.
 - Current free GPU limits on Kaggle and Colab. Checked in Session 3.
 - The bundle's exact inference settings (normalisation, sliding window). Read from `inference.json` in Session 7.
@@ -190,16 +190,16 @@ Works when: the repo is visible on GitHub with README, LICENSE, PLAN.md, CLAUDE.
 
 #### Session 2: Tue Nov 17. Data route and licence gate
 Half A
-- [ ] Read the TCIA BraTS 2021 page together. Write `docs/DATA_ACCESS.md`: licence, required citations, what is and is not allowed
-- [ ] Download the small files to `C:\BrainTumorData\meta`: `BraTS2021_MappingToTCIA.xlsx`, `NotPreviouslyInTCIA.csv` (well under 2 GB)
-- [ ] Open the TCIA Aspera package link and see whether single cases can be selected. Do not download anything large
+- [x] Read the TCIA BraTS 2021 page together. Write `docs/DATA_ACCESS.md`: licence, required citations, what is and is not allowed
+- [x] Download the small files to `C:\BrainTumorData\meta`: `BraTS2021_MappingToTCIA.xlsx`, `NotPreviouslyInTCIA.csv` (well under 2 GB)
+- [x] Open the TCIA Aspera package link and see whether single cases can be selected. Do not download anything large
 
 Half B
-- [ ] On Synapse, find the file mapping BraTS 2021 IDs to earlier years. Record its exact name, location and columns. Download it (small)
-- [ ] Read the Synapse data-use terms. Record what they say about redistribution and public display
-- [ ] If single-case TCIA download is impossible, draft the TCIA helpdesk email (Debraj sends it himself)
-- [ ] In the BraTS 2021 paper (arXiv 2107.02314), find how the labels were made and note the exact wording
-- [ ] Explain today in three sentences
+- [x] On Synapse, find the file mapping BraTS 2021 IDs to earlier years. Record its exact name, location and columns. Download it (small)
+- [x] Read the Synapse data-use terms. Record what they say about redistribution and public display
+- [x] If single-case TCIA download is impossible, draft the TCIA helpdesk email (Debraj sends it himself). Single cases can be selected, but the email was drafted anyway for other reasons: `docs/TCIA_HELPDESK_EMAIL.md`
+- [x] In the BraTS 2021 paper (arXiv 2107.02314), find how the labels were made and note the exact wording
+- [x] Explain today in three sentences
 
 Works when: `docs/DATA_ACCESS.md` states the chosen route, what is still unconfirmed, and who was asked.
 
@@ -260,6 +260,8 @@ Half B
 - [ ] Log weak answers in the Session log
 
 #### Buffer B1: Sun Nov 22
+- [ ] Aspera test (moved from Session 2): install the IBM Aspera client, download `RSNA-ASNR-MICCAI-BraTS-2021.sums` (47.5 MB) and one 125 KB label file. Record the checksum type in `docs/DATA_ACCESS.md`
+- [ ] Compare the Kaggle copy's checksums against the `.sums` list (needs Session 3's Kaggle dataset). Record the result
 
 ### Stage 2: Running the model
 
@@ -705,3 +707,4 @@ If no stretch: failure-analysis checkpoint:
 Add one line per session: date, session number, what got done, anything carried over, weak explain-back answers to revisit.
 
 - **Nov 16, 2026, Session 1 (run on Fable 5.2 at Debraj's request, for today only).** Done: folder confirmed not syncing to OneDrive (it sits outside the OneDrive folder; no move needed); `.gitignore`, first commit `340e7eb`; public repo https://github.com/Dbrjkrm/brain-tumor-viewer created and pushed; README stub, MIT LICENSE, `C:\BrainTumorData` with README, Commands section in CLAUDE.md. Change from plan: the repo was created with GitHub CLI (`gh` 2.104.0, installed with winget at Debraj's request) instead of in the browser. Incident: `git init` was first run in `C:\Users\debra` by mistake (Claude had not given the `cd` command); stopped, the stray `.git` deleted, nothing committed or uploaded. Lesson: check the prompt shows the project folder before any Git command. Nothing carried over. **Weak explain-back answers to revisit:** (1) described the whole project instead of today's work; (2) said "detection" and "building a model": it is *segmentation* (outlining where the tumor is; every case already has one) by a pretrained model we *evaluate*, not build; (3) called the data "MRI photos from the internet" rather than 3D scans from a public, licensed research dataset (BraTS 2021); (4) gave tidiness as the reason for `.gitignore` and missed the main one: scan files, model weights and login tokens must never become public. Solid: the model is pretrained; research only; named both error directions (healthy tissue marked as tumor, tumor marked as healthy).
+- **Nov 16, 2026, Session 2 (run on Fable 5.2 at Debraj's request; switched to Opus 5.5 for the explain-back and wrap-up).** Done: `docs/DATA_ACCESS.md` written from primary sources with exact quotes and CONFIRMED/UNCONFIRMED labels; `BraTS2021_MappingToTCIA.xlsx`, `NotPreviouslyInTCIA.csv` and `BraTS2023_2017_GLI_Mapping.xlsx` saved to `C:\BrainTumorData\meta` with SHA-256 fingerprints; TCIA helpdesk email drafted (`docs/TCIA_HELPDESK_EMAIL.md`, not sent yet). Labels confirmed in the paper: fused output of three algorithms, refined by volunteer neuroradiologists, approved by two senior neuroradiologists, so "expert-approved reference outline" stands. **Plan changes agreed with Debraj:** (1) Synapse BraTS 2021 page is archived; the mapping file is in the BraTS 2023 project and needed his sign-in and acceptance of CC BY-NC post-challenge terms; (2) display route is TCIA only, or files proven identical to TCIA's by checksum; Synapse is used for the mapping file only, because its copy is CC BY-NC and altered (ET label 3, renamed cases); (3) compute on the Kaggle copy, verified against TCIA's `.sums` checksum list instead of downloading 8 demo cases by hand; (4) Aspera test moved to Buffer B1. New finding: TCIA's policy adds duties for anyone hosting a copy (link the policy, ask reusers to do the same); this is one of the helpdesk questions. Carried over: send the helpdesk email; Aspera test and checksum comparison (B1). **Weak explain-back answers to revisit:** (1) said we were "grabbing all of that information and storing it": we downloaded only ~400 KB of ID spreadsheets and no scans, on purpose; (2) said the data is "a basis to learn and train from": the same slip as Session 1; we evaluate a pretrained model, we do not train; (3) described the licence risk as data being "only for research and larger places" instead of the real difference, CC BY 4.0 (TCIA) versus CC BY-NC (Synapse); (4) follow-up: could not say why the mapping file is needed (it tells us which cases the model saw in BraTS 2018 training, for the leakage check). Solid: the check-question answer "licence is permission, citation is credit, and we need both"; named licensing as the main risk.
