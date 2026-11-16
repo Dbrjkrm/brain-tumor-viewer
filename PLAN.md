@@ -175,16 +175,16 @@ Required spend: $0. Optional: a domain (about $15/year), one month of Colab Pro 
 
 #### Session 1: Mon Nov 16. Project skeleton
 Half A
-- [ ] Check whether this project folder is really syncing to OneDrive. If it is, decide with Claude whether to move the repo to a non-synced folder (thousands of small build files sync badly)
-- [ ] `git init`, add `.gitignore` (node_modules, .venv, *.nii, *.nii.gz, data folders), first commit
-- [ ] Create the public GitHub repo `brain-tumor-viewer` and push
+- [x] Check whether this project folder is really syncing to OneDrive. If it is, decide with Claude whether to move the repo to a non-synced folder (thousands of small build files sync badly)
+- [x] `git init`, add `.gitignore` (node_modules, .venv, *.nii, *.nii.gz, data folders), first commit
+- [x] Create the public GitHub repo `brain-tumor-viewer` and push
 
 Half B
-- [ ] Create `C:\BrainTumorData` with a short README saying what belongs there
-- [ ] Add README.md stub with the not-for-diagnosis statement, and LICENSE (MIT for code, unless Debraj prefers another)
+- [x] Create `C:\BrainTumorData` with a short README saying what belongs there
+- [x] Add README.md stub with the not-for-diagnosis statement, and LICENSE (MIT for code, unless Debraj prefers another)
 - [x] Confirm the data-repo decision in section 5.6 (confirmed by Debraj on Nov 16, 2026: yes, separate data repo)
-- [ ] Fill in the "Commands" section of CLAUDE.md with what was actually run
-- [ ] Explain today in three sentences
+- [x] Fill in the "Commands" section of CLAUDE.md with what was actually run
+- [x] Explain today in three sentences
 
 Works when: the repo is visible on GitHub with README, LICENSE, PLAN.md, CLAUDE.md and PROJECT_BRIEF.md.
 
@@ -704,4 +704,4 @@ If no stretch: failure-analysis checkpoint:
 
 Add one line per session: date, session number, what got done, anything carried over, weak explain-back answers to revisit.
 
-- 
+- **Nov 16, 2026, Session 1 (run on Fable 5.2 at Debraj's request, for today only).** Done: folder confirmed not syncing to OneDrive (it sits outside the OneDrive folder; no move needed); `.gitignore`, first commit `340e7eb`; public repo https://github.com/Dbrjkrm/brain-tumor-viewer created and pushed; README stub, MIT LICENSE, `C:\BrainTumorData` with README, Commands section in CLAUDE.md. Change from plan: the repo was created with GitHub CLI (`gh` 2.104.0, installed with winget at Debraj's request) instead of in the browser. Incident: `git init` was first run in `C:\Users\debra` by mistake (Claude had not given the `cd` command); stopped, the stray `.git` deleted, nothing committed or uploaded. Lesson: check the prompt shows the project folder before any Git command. Nothing carried over. **Weak explain-back answers to revisit:** (1) described the whole project instead of today's work; (2) said "detection" and "building a model": it is *segmentation* (outlining where the tumor is; every case already has one) by a pretrained model we *evaluate*, not build; (3) called the data "MRI photos from the internet" rather than 3D scans from a public, licensed research dataset (BraTS 2021); (4) gave tidiness as the reason for `.gitignore` and missed the main one: scan files, model weights and login tokens must never become public. Solid: the model is pretrained; research only; named both error directions (healthy tissue marked as tumor, tumor marked as healthy).

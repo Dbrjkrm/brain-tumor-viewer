@@ -79,7 +79,39 @@ Do not run ahead into later sessions, and do not add features that are not in PL
 
 ## Commands
 
-(Filled in during Session 1 and kept current: how to run the site locally, build it, deploy it, run the tests, and run the web-data script.)
+Kept current. Only commands that have actually been run in this project are listed. Still to come: running the site locally, building it, deploying it, running the tests, and running the web-data script (added in the sessions that create them).
+
+Run every command from the project folder. Check the prompt ends in `Brain Tumor Viewer>` first; a new PowerShell window starts in `C:\Users\debra`, which is the wrong place.
+
+```powershell
+# Go to the project folder (quotes needed because the path has spaces).
+cd "C:\Users\debra\Projects\Brain Tumor Viewer"
+
+# See what has changed since the last commit.
+git status
+
+# Save a snapshot: stage every change, then commit with a message.
+git add .
+git commit -m "Describe what changed"
+
+# Send new commits to GitHub.
+git push
+
+# Check which GitHub account this laptop is signed in to.
+gh auth status
+```
+
+One-time setup, run in Session 1 (Nov 16, 2026), not needed again:
+
+```powershell
+git init -b main                 # start tracking this folder, main line named "main"
+winget install GitHub.cli        # install GitHub's command-line tool (gh 2.104.0)
+gh auth login --hostname github.com --git-protocol https --web   # sign in through the browser
+gh repo create brain-tumor-viewer --public --description "Research and education project: view brain MRI cases with an AI tumor outline. Not for diagnosis." --source . --remote origin --push
+```
+
+- Repo: https://github.com/Dbrjkrm/brain-tumor-viewer (remote name `origin`, branch `main`).
+- If a new terminal says `gh` is not recognised, close and reopen it, or use the full path `& "C:\Program Files\GitHub CLI\gh.exe"`.
 
 ## Model split
 
