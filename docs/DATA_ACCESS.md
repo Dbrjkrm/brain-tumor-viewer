@@ -4,7 +4,7 @@
 
 **How it fits the project.** Nothing may be published in the `brain-tumor-viewer-data` repo until the open items in section 9 that are marked "blocks publishing" are closed.
 
-**Last checked:** Nov 16, 2026 (Session 2). Every source in this file was read on that date. Web pages change, so re-check before launch (Session 33).
+**Last checked:** Nov 16, 2026 (Session 2). Every source in this file was read on that date. Web pages change, so re-check before launch (Session 33). Section 8.4 (the Kaggle copy) was added later the same day, in Session 3.
 
 **How to read the status labels.**
 
@@ -24,7 +24,7 @@ The same BraTS 2021 scans can be obtained through three "doors". Each door has i
 |---|---|---|---|
 | TCIA (The Cancer Imaging Archive) | The public archive run for the US National Cancer Institute | CC BY 4.0 | **The licence we rely on for showing scans publicly** |
 | Synapse (Sage Bionetworks) | The platform that ran the BraTS challenge | CC BY-NC (non-commercial), accepted by clicking through with an account | One small spreadsheet only (the ID mapping file). Never for scans we display |
-| Kaggle | A cloud notebook platform that hosts a copy of the BraTS 2021 training data | To be recorded in Session 3 | Where the model runs, because the laptop cannot hold the data |
+| Kaggle | A cloud notebook platform where another user has uploaded a copy of the BraTS 2021 training data (section 8.4) | Kaggle licence field: "Data files © Original Authors", which is not an open licence. The page repeats the 2021 Synapse challenge conditions. It never mentions TCIA's CC BY 4.0 | Where the model runs, because the laptop cannot hold the data. Never the licence basis for anything shown |
 
 The route, agreed by Debraj on Nov 16, 2026:
 
@@ -311,6 +311,94 @@ Change from PLAN.md, agreed Nov 16, 2026: instead of downloading the 8 demo case
 - Only the first 6 rows were looked at today. Counting cases by year is Session 4's job.
 - This file came through the Synapse door, so it is covered by the CC BY-NC terms in section 5.3. We do not publish the file itself. What we may publish from it (our own lists of case IDs and their status) is OUR READING of those terms: derived ID lists with attribution, on a non-commercial project.
 
+### 8.4 The Kaggle copy (identified Nov 16, 2026, Session 3)
+
+This is the copy the model will run on. It is **not** an official release. It is one Kaggle user's upload of files taken from Synapse in 2021. Think of it as a photocopy of a library book made by a stranger: it may be perfect, but we check it against the original before trusting it.
+
+Sources: the dataset page, https://www.kaggle.com/datasets/dschettler8845/brats-2021-task1 (Data Card, expanded Metadata panel, Discussion tab), and Kaggle's own public record of the same dataset at https://www.kaggle.com/api/v1/datasets/view/dschettler8845/brats-2021-task1 and https://www.kaggle.com/api/v1/datasets/list/dschettler8845/brats-2021-task1 (these give exact byte counts and dates, where the page only says "13 GB" and "5 years ago"). Read without signing in. Nothing was downloaded.
+
+#### What the page states (CONFIRMED)
+
+| Item | Value, exactly as shown |
+|---|---|
+| Title | `BRaTS 2021 Task 1 Dataset` (with that capitalisation) |
+| Subtitle | `RSNA-ASNR-MICCAI Brain Tumor Segmentation (BraTS) Challenge 2021` |
+| Short name in the address | `dschettler8845/brats-2021-task1` |
+| Uploader | Darien Schettler, Kaggle username `dschettler8845`. Listed as the only collaborator, with the role "Owner". The "Authors" field is empty |
+| Kaggle dataset ID | 1541666 |
+| Version | 1, with the note "Initial release", created 2021-08-19 at 21:59 UTC. It is the only version. "Expected update frequency: Never" |
+| Total size | 13,417,502,720 bytes (the page shows "13.42 GB") |
+| Licence field | "Data files © Original Authors" |
+| Source field | `https://www.synapse.org/#!Synapse:syn25829067/wiki/610863` (the 2021 Synapse challenge page, now archived, section 5.1) |
+| DOI field | Empty |
+| Use, as counted by Kaggle on Nov 16, 2026 | 64,956 downloads, 249 notebooks, 378 votes |
+
+The three files. A `.tar` file is an archive: many files packed into one, like a taped-up box. Kaggle does not show what is inside it ("Previews for binary data are not supported").
+
+| File | Size in bytes | Added (UTC) |
+|---|---|---|
+| `BraTS2021_Training_Data.tar` | 13,396,408,320 | 2021-08-19 22:05 |
+| `BraTS2021_00495.tar` | 10,321,920 | 2021-08-19 21:59 |
+| `BraTS2021_00621.tar` | 10,772,480 | 2021-08-19 21:59 |
+
+The three sizes add up to the total above exactly.
+
+What the description says about the data. It is the 2021 Synapse challenge text, copied onto the Kaggle page:
+
+- Label values: "the GD-enhancing tumor (ET — label 4), the peritumoral edematous/invaded tissue (ED — label 2), and the necrotic tumor core (NCR — label 1)".
+- Conditions: "Challenge participants must abide by the guiding principles for responsible research use and data handling within the Synapse Commons Platform as described in the Synapse Governance documents and by the Challenges Official Rules."
+- Use: "You are free to use and/or refer to the BraTS datasets in your own research, provided that you always cite the flagship manuscript (published or pre-published) resulting from the challenge as well as the following three manuscripts". The three are the papers in section 3.3. It also asks for the two TCGA segmentation-label citations (items 1 and 2 in section 3.4).
+- Acknowledgement sentence, with "Synapse ID (syn25829067)", the same ID the TCIA page uses (section 5.5).
+
+The Discussion tab has 5 topics. None reports missing, damaged or corrected files, and none explains the two single-case archives.
+
+#### Not known until we look inside (UNCONFIRMED)
+
+The page does not state any of these. They were the questions going into the Session 3 notebook; the answers are in the next part, "What the notebook found".
+
+- **Case count.** The page gives no number. We expect 1,251 (the paper's training-set count, section 6.5). A size check that is only a hint (OUR READING): 13,396,408,320 bytes divided by 1,251 is about 10.7 MB per case, and the two single-case archives are 10.3 MB and 10.8 MB, so the size fits 1,251 cases.
+- **File layout and file names** inside `BraTS2021_Training_Data.tar`.
+- **The label values actually stored** in the label files. The description says 4 for enhancing tumor; Half B of Session 3 prints the real values.
+- **Whether cases 00495 and 00621 are also inside the big archive**, and if so whether those copies differ from the two separate ones.
+
+#### What the notebook found (Nov 16, 2026, Session 3)
+
+Run in a private Kaggle notebook on Debraj's account (`debrajkarmaker/brain-tumor-viewer-01-first-look`), no GPU, no internet, dataset attached at `/kaggle/input/datasets/dschettler8845/brats-2021-task1/`. The notebook is in this repo as `notebooks/01_first_look.ipynb`. It is the file Debraj downloaded from Kaggle, with each cell's real text output kept and one thing removed: the picture of a scan slice drawn by the last cell, because scan images are never committed here.
+
+How far to trust the numbers below: they were first read off the screen, then checked one by one against the text output saved in that notebook file. All of them matched. Two also check themselves: the four label counts add up to exactly 240 × 240 × 155 = 8,928,000 voxels, and case 00118's five sizes convert to exactly the five figures in TCIA's listing.
+
+- **Case count: 1,251** (CONFIRMED by counting). Case IDs run from `BraTS2021_00000` to `BraTS2021_01666`, so the numbering has gaps.
+- **Files: 6,255 scan files, exactly 5 per case**, plus one junk file, `./.DS_Store`. That is a file macOS creates when a folder is opened in Finder. It shows the archive was re-packed on a Mac, so it is not the organisers' own packaging. It holds no scan data.
+- **Layout:** `./BraTS2021_00000/BraTS2021_00000_flair.nii.gz`, one folder per case. The five endings are `_flair`, `_seg`, `_t1`, `_t1ce`, `_t2`, the same file names TCIA uses (section 8.2). No renamed files were found. The folders are not sorted by source collection as TCIA's are.
+- **Cases 00495 and 00621 are in the big archive as well as in their own archives.** All 10 files (5 per case) have the same SHA-256 fingerprint in both places, so they are plain duplicates, not two versions. Doubt D4 is closed. Why they were packed separately is still not stated anywhere.
+- **Case 00495** (from its own archive, where the files sit loose with no folder): flair 2,503,035 bytes, seg 37,663, t1 2,652,585, t1ce 2,689,385, t2 2,428,304.
+- **Case 00118**, the case whose sizes we recorded from TCIA's listing: flair 1,872,411 bytes, seg 128,462, t1 1,936,184, t1ce 1,896,946, t2 2,086,035. Divided by 1,048,576 (and the seg file by 1,024) these are 1.79 MB, 125.45 KB, 1.85 MB, 1.81 MB and 1.99 MB, which are exactly the five sizes TCIA's listing shows. So for this one case the files are the same size in both copies. Same size is good evidence but not proof of the same contents; only the checksum comparison in B1 can show that. Doubt D5 is much weaker but stays open.
+- **Kaggle account:** the weekly quota shown is 30 hours of GPU and 20 hours of TPU, with none used. The account is not phone-verified, which Kaggle normally requires before GPU or internet can be switched on in a notebook.
+
+One case opened with nibabel 5.4.2 (case 00495, chosen only because its archive is small and quick to unpack; it was unpacked to `/kaggle/temp`, a scratch folder that is wiped when the session ends):
+
+- **All five files have the same grid:** 240 × 240 × 155 voxels, each voxel a 1 mm cube, orientation codes `('L', 'P', 'S')`. This matches the paper (section 6.5). The codes mean that counting up along the three axes moves towards the patient's left, the back of the head and the top of the head.
+- **Number types:** the four scans are stored as `int16` (whole numbers); the label map as `uint16`. Every file's smallest value is 0. Largest values in this case: t1 6,402, t1ce 12,299, t2 2,508, flair 2,289. The scans have no fixed brightness scale, which is why the model's own normalisation step matters later (Session 7).
+- **Label values present: 0, 1, 2 and 4. There is no 3.** Counts in this case: label 0 (not tumor) 8,828,698 voxels; label 1 (necrotic core) 20,808; label 2 (edema) 46,447; label 4 (enhancing tumor) 32,047. This is the 2021 convention, the same as TCIA's (doubt D9). It has been checked in **one case only**; every case used for results gets the same check when the model is run.
+- A caution for later: this notebook looked at pictures of case 00495 before the locked test set exists. Looking at one case to learn the file format does not tune anything, but it is recorded here so it is not forgotten when the lists are made in Session 5.
+
+#### What makes this copy doubtful as a match for the TCIA release
+
+| # | Doubt | Why it matters | How it gets settled |
+|---|---|---|---|
+| D1 | **It came through the Synapse door, not TCIA's.** Its source field is the 2021 Synapse page and its conditions are the 2021 challenge rules | By the rule in section 1, a copy carries the terms of the door it came through. Nothing on this page gives CC BY 4.0. So this copy can be used for computing, never as the licence basis for display | Already handled by the route in section 1 |
+| D2 | **The licence field is "Data files © Original Authors".** That is not an open licence. It says only that the rights belong to someone else | The page does not say the uploader had permission to redistribute the files. Our own use is research use with the citations the page asks for, which the copied conditions allow (OUR READING). The uploader's right to post it is UNCONFIRMED | Session 33 review (U13) |
+| D3 | **A third party's upload, two years older than TCIA's release.** Uploaded 2021-08-19. TCIA's release is dated 2023/08/25 and its package was sent on November 11, 2023 (section 8.2) | Any file the organisers corrected between those dates would differ. We have no evidence either way | Checksum comparison in Buffer B1 (U5) |
+| D4 | **Two cases sit in their own archives** (`BraTS2021_00495.tar`, `BraTS2021_00621.tar`) with no explanation | They could be corrected replacements for copies inside the big archive, or the only copies. Until we know, there may be two different versions of these two cases, and we cannot say which one TCIA holds | Closed Nov 16, 2026: both cases are also in the big archive and all 10 files are identical in both places |
+| D5 | **The file sizes may not match TCIA's.** TCIA lists case 00118 at about 7.6 MB for its 5 files (section 8.2). The two single-case archives here are 10.3 MB and 10.8 MB | They are different cases, and tumor size changes how well a scan compresses, so this proves nothing yet. But if the same case is a different size in the two copies, the files are not byte-for-byte identical and their checksums cannot match, even if the pictures inside are the same. A `.nii.gz` file is a compressed file, and the same picture can be compressed into different bytes | Weaker since Nov 16, 2026: case 00118's five files are the same sizes as in TCIA's listing. Same size is not proof of the same bytes, so it stays open until B1 |
+| D6 | **Archives, not loose files.** TCIA's checksum list is expected to cover individual files | A checksum of a `.tar` archive can never match anything in TCIA's list. Each file has to be taken out of the archive first and fingerprinted on its own | Done inside the cloud notebook in B1 |
+| D7 | **Different folder layout is likely.** TCIA sorts cases into folders by source collection (section 8.2). This copy predates that | Files must be matched by case ID and file name, not by folder path. Any renamed file would break the match | Notebook listing |
+| D8 | **Training cases only.** The title says "Task 1" and the big archive is named "Training_Data". TCIA's package also holds the validation set | Not a problem for us: we only use cases that have reference outlines. It does mean this copy cannot be compared with TCIA's whole package, only with its training part | Notebook listing |
+| D9 | **The label 3 versus 4 question.** The description says enhancing tumor is label 4, matching TCIA and the paper (section 6.5), and the upload predates the 2023 change to label 3 (section 5.2) | If label 3 were found instead, this copy would be the altered 2023 version and could never match TCIA's checksums | Checked in one case on Nov 16, 2026: values 0, 1, 2 and 4, no 3. Every other case is checked when the model is run (U14) |
+| D10 | **It can disappear.** A user's dataset can be deleted by its owner or by Kaggle | Our notebooks would stop running. Kaggle lists other uploads of the same data (for example one with 6,255 loose files, which is 1,251 × 5), but each is a copy of a copy and would need the same checks | Record the dataset ID and version (above) in every notebook. No action unless it happens |
+
+What does not change: the display rule in section 1. If the checksums in B1 do not match TCIA's, the fallback is to download the 8 demo cases from TCIA itself (about 8 MB each as listed, so well under 100 MB in total) and display those files, and to compare the Kaggle copy with them by picture content rather than by compressed bytes.
+
 ---
 
 ## 9. Still unconfirmed
@@ -321,13 +409,16 @@ Change from PLAN.md, agreed Nov 16, 2026: instead of downloading the 8 demo case
 | U2 | Columns of `BraTS2021_MappingToTCIA.xlsx` | No | Session 4 or 5 |
 | U3 | Whether a single-file Aspera transfer from the TCIA package works on this laptop | No | Aspera session (to be scheduled) |
 | U4 | Format and checksum type of the `.sums` file | **Yes** | Aspera session |
-| U5 | Whether the Kaggle-hosted copy is identical to TCIA's files. Its exact name, uploader and stated licence are also not recorded yet | **Yes** | Session 3 (identify it), Aspera session (compare) |
+| U5 | Whether the Kaggle-hosted copy is identical to TCIA's files. Its name, uploader and stated licence were recorded on Nov 16, 2026 (section 8.4). Still open: the comparison itself, including whether the compressed files are byte-for-byte the same (doubts D3 and D5) | **Yes** | Buffer B1 (compare) |
 | U6 | Whether hosting 8 derived cases makes this project a "Data Analysis Center" under TCIA's policy, and whether TCIA wants anything beyond section 4 | **Yes** (PLAN.md 5.9: launch waits on the answer, the build does not) | Helpdesk email, section 10 |
 | U7 | Whether IvyGAP, CPTAC-GBM and ACRIN-FMISO-Brain need their own citations when a displayed case comes from one of them | **Yes**, if a demo case comes from one of them | Helpdesk email; otherwise cite them anyway from their TCIA pages |
 | U8 | Subject counts disagree: 1,480 (TCIA table), "about 1,479" (package note), 1,470 (Synapse 2023 page; 1,251 + 219 in the paper) | No | Count the cases ourselves in Sessions 4 and 5 |
 | U9 | Synapse ID in the acknowledgement: syn25829067 (TCIA) or syn25829070 (Synapse rules page) | No | Follow TCIA; mention in the helpdesk email only if there is room |
 | U10 | The CC BY 4.0 legal code was not read in full; only the deed was | No | Session 33 review |
 | U11 | Synapse's general governance documents and terms of service were not re-read | No (not relied on for display) | Session 33 review |
+| U12 | Closed Nov 16, 2026. The Kaggle archives hold 1,251 cases, 5 files each, with TCIA's file names; cases 00495 and 00621 are identical duplicates, not two versions (section 8.4) | No | Done |
+| U13 | Whether the Kaggle uploader had permission to redistribute the files, given the licence field "Data files © Original Authors" (section 8.4, doubt D2) | No (the Kaggle copy is never the licence basis for display) | Session 33 review |
+| U14 | The label values actually stored in the Kaggle copy's label files (expected 0, 1, 2, 4). Checked in one case on Nov 16, 2026: 0, 1, 2 and 4, no 3 (section 8.4). Still open for all other cases | **Yes** (label 3 would mean it is not the 2021 release) | Checked for every case when the model is run (Stage 2) |
 
 ---
 
@@ -356,3 +447,4 @@ Debraj sends the email himself. When a reply arrives, its date and exact wording
 - Synapse, BraTS 2023 Data Conditions for Use: https://www.synapse.org/Synapse:syn51156910/wiki/622360
 - Synapse, BraTS-GLI data folder: https://www.synapse.org/Synapse:syn51514105
 - Baid et al. 2021, arXiv:2107.02314v2: https://arxiv.org/abs/2107.02314
+- Kaggle, "BRaTS 2021 Task 1 Dataset" (read in Session 3, same date): https://www.kaggle.com/datasets/dschettler8845/brats-2021-task1 and Kaggle's public records of it, https://www.kaggle.com/api/v1/datasets/view/dschettler8845/brats-2021-task1 and https://www.kaggle.com/api/v1/datasets/list/dschettler8845/brats-2021-task1
