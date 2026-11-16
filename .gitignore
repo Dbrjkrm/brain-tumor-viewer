@@ -1,0 +1,42 @@
+# .gitignore: the list of things Git must never save or upload.
+# Each line is a pattern. Any file or folder matching a pattern is invisible to Git.
+# Lines starting with # are comments like this one.
+# This file matters for the project's data rules: scan files and model weights
+# must never end up in this repo (see "Data rules" in CLAUDE.md).
+
+# --- Brain scans: never commit these ---
+# NIfTI scan files (the format BraTS uses), plain and compressed.
+*.nii
+*.nii.gz
+# DICOM, the format hospital scanners produce.
+*.dcm
+
+# --- Model weights: large files of learned numbers, downloaded, not ours to store ---
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# --- Data folders: a safety net in case scans are ever copied into the project by mistake ---
+# (Real scan files live in C:\BrainTumorData, outside this folder.)
+data/
+models/
+
+# --- Secrets: login tokens must never be uploaded ---
+kaggle.json
+.env
+.synapseConfig
+
+# --- JavaScript: downloaded libraries and built output (thousands of files, recreated by a command) ---
+node_modules/
+dist/
+
+# --- Python: the private Python environment and its caches (also recreated by a command) ---
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# --- Clutter made by Windows and by tools on this laptop only ---
+Thumbs.db
+desktop.ini
+.claude/settings.local.json
