@@ -1,10 +1,10 @@
-# Draft email to the TCIA helpdesk
+# Email to the TCIA helpdesk
 
-**What this file is for.** It holds the email Debraj sends to The Cancer Imaging Archive (TCIA) helpdesk to confirm that the way this project shows 8 demo cases follows TCIA's rules. The background is in `docs/DATA_ACCESS.md`, sections 4 and 9.
+**What this file is for.** It holds the email Debraj sent to The Cancer Imaging Archive (TCIA) helpdesk to confirm that the way this project shows 8 demo cases follows TCIA's rules. The background is in `docs/DATA_ACCESS.md`, sections 4 and 9.
 
-**Status:** drafted Nov 16, 2026. Not sent yet. Debraj sends it himself, through the form or address given at https://www.cancerimagingarchive.net/support/. When a reply arrives, record its date and exact wording in section 10 of `docs/DATA_ACCESS.md`.
+**Status: sent Nov 18, 2026** by Debraj, from his university email account, to the TCIA helpdesk address. Waiting on a reply. When it arrives, record its date and exact wording in section 10 of `docs/DATA_ACCESS.md`.
 
-Before sending: read it aloud once and change any sentence that does not sound like you. Do not send anything you could not explain.
+**The sent version is not word-for-word the draft below.** Before sending, Debraj made small edits: the wording about converting the cases to 8-bit ("converted to 8-bit"), and the numbering of the three questions. The exact sent text is in his sent mail; the draft below is kept as written on Nov 16, 2026, so this file does not guess at his wording. The three questions are the same.
 
 ---
 

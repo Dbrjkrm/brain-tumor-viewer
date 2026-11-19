@@ -413,10 +413,10 @@ What does not change: the display rule in section 1. If the checksums in B1 do n
 | U1 | Closed Nov 16, 2026. The mapping file was downloaded and its columns recorded in section 8.3. Still open from it: whether publishing ID lists derived from a CC BY-NC file needs anything beyond attribution | No | Session 33 review |
 | U2 | Columns of `BraTS2021_MappingToTCIA.xlsx` | No | Session 4 or 5 |
 | U3 | Whether a single-file Aspera transfer from the TCIA package works on this laptop | No | Aspera session (to be scheduled) |
-| U4 | Format and checksum type of the `.sums` file | **Yes** | Aspera session |
+| U4 | Format and checksum type of the `.sums` file | **Yes** | Aspera session (Buffer B1); also asked in the helpdesk email sent Nov 18, 2026 |
 | U5 | Whether the Kaggle-hosted copy is identical to TCIA's files. Its name, uploader and stated licence were recorded on Nov 16, 2026 (section 8.4). Still open: the comparison itself, including whether the compressed files are byte-for-byte the same (doubts D3 and D5) | **Yes** | Buffer B1 (compare) |
-| U6 | Whether hosting 8 derived cases makes this project a "Data Analysis Center" under TCIA's policy, and whether TCIA wants anything beyond section 4 | **Yes** (PLAN.md 5.9: launch waits on the answer, the build does not) | Helpdesk email, section 10 |
-| U7 | Whether IvyGAP, CPTAC-GBM and ACRIN-FMISO-Brain need their own citations when a displayed case comes from one of them | **Yes**, if a demo case comes from one of them | Helpdesk email; otherwise cite them anyway from their TCIA pages |
+| U6 | Whether hosting 8 derived cases makes this project a "Data Analysis Center" under TCIA's policy, and whether TCIA wants anything beyond section 4 | **Yes** (PLAN.md 5.9: launch waits on the answer, the build does not) | Helpdesk email, sent Nov 18, 2026; waiting on the reply (section 10) |
+| U7 | Whether IvyGAP, CPTAC-GBM and ACRIN-FMISO-Brain need their own citations when a displayed case comes from one of them | **Yes**, if a demo case comes from one of them | Helpdesk email, sent Nov 18, 2026; waiting on the reply. If no answer, cite them anyway from their TCIA pages |
 | U8 | Subject counts disagree: 1,480 (TCIA table), "about 1,479" (package note), 1,470 (Synapse 2023 page; 1,251 + 219 in the paper) | No | Count the cases ourselves in Sessions 4 and 5 |
 | U9 | Synapse ID in the acknowledgement: syn25829067 (TCIA) or syn25829070 (Synapse rules page) | No | Follow TCIA; mention in the helpdesk email only if there is room |
 | U10 | The CC BY 4.0 legal code was not read in full; only the deed was | No | Session 33 review |
@@ -431,7 +431,7 @@ What does not change: the display rule in section 1. If the checksums in B1 do n
 
 | Date | Who | Question | Answer |
 |---|---|---|---|
-| Not sent yet (drafted Nov 16, 2026) | TCIA helpdesk, through https://www.cancerimagingarchive.net/support/ | See `docs/TCIA_HELPDESK_EMAIL.md` | None yet |
+| Sent Nov 18, 2026 (drafted Nov 16; Debraj made small wording edits before sending) | TCIA helpdesk, by email from Debraj's university account | The three questions in `docs/TCIA_HELPDESK_EMAIL.md`: (1) is the planned hosting of 8 converted cases consistent with TCIA's policy, and is it "mirroring" or a Data Analysis Center (U6); (2) is `RSNA-ASNR-MICCAI-BraTS-2021.sums` the right file to compare the Kaggle copy against, and which checksum type it uses (U4, U5); (3) should IvyGAP, CPTAC-GBM or ACRIN-FMISO-Brain be cited if a demo case comes from one of them (U7) | **Waiting.** None yet |
 
 Debraj sends the email himself. When a reply arrives, its date and exact wording are added to this table.
 

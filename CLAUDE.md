@@ -80,7 +80,9 @@ Do not run ahead into later sessions, and do not add features that are not in PL
 - Budget: about $50 total. Do not suggest paid services unless a free route has failed.
 - Python libraries live in the project's own virtual environment, `.venv` (ignored by Git). Run Python as `.\.venv\Scripts\python.exe`, not plain `python`. Installed Nov 18, 2026: pandas 3.1.1, openpyxl 3.1.5, numpy 2.5.5. pip downloads on this connection can stall; use `--timeout 60 --retries 5`.
 
-## Running Kaggle notebooks (planned Nov 18, 2026; not tested yet)
+## Running Kaggle notebooks (planned Nov 18, 2026; login tested, runs not tested yet)
+
+Status Nov 18, 2026: the CLI is installed in `.venv` (`kaggle` 2.2.5, plus `six` 1.17.0, which kaggle 2.2.5 imports but does not install by itself) and logs in with the token in `C:\Users\debra\.kaggle\access_token`: `kaggle datasets files dschettler8845/brats-2021-task1` and `kaggle kernels list --mine` both work. Not yet tested: `kernels push`, `status` and `output`. Still waiting on him: phone verification, without which Kaggle keeps GPU and internet off.
 
 Claude runs Kaggle notebooks from the laptop with the official Kaggle command-line tool, so he never has to click around Kaggle. Source: the official docs at https://github.com/Kaggle/kaggle-cli (README, docs/README.md, docs/kernels.md, docs/kernels_metadata.md), read Nov 18, 2026, when the main branch was version 2.2.5. Check them again before the first run.
 
@@ -120,6 +122,10 @@ gh auth status
 
 # Rebuild data_lists\case_status.csv from the mapping file (Session 4). Do not re-run once results exist.
 .\.venv\Scripts\python.exe scripts\04_make_case_status.py
+
+# Check the Kaggle command-line tool can log in (read-only; never print the token).
+.\.venv\Scripts\kaggle.exe datasets files dschettler8845/brats-2021-task1
+.\.venv\Scripts\kaggle.exe kernels list --mine
 ```
 
 One-time setup, run in Session 4 (Nov 18, 2026), not needed again:
@@ -127,6 +133,7 @@ One-time setup, run in Session 4 (Nov 18, 2026), not needed again:
 ```powershell
 python -m venv .venv             # create the project's private Python toolbox
 .\.venv\Scripts\python.exe -m pip install --timeout 60 --retries 5 pandas openpyxl
+.\.venv\Scripts\python.exe -m pip install --timeout 60 --retries 5 kaggle six   # Kaggle command-line tool (Nov 18)
 ```
 
 One-time setup, run in Session 1 (Nov 16, 2026), not needed again:
