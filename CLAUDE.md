@@ -117,6 +117,9 @@ gh auth status
 
 # Run a project script with the project's own Python (first used in Session 4).
 .\.venv\Scripts\python.exe scripts\04_look_at_mapping.py
+
+# Rebuild data_lists\case_status.csv from the mapping file (Session 4). Do not re-run once results exist.
+.\.venv\Scripts\python.exe scripts\04_make_case_status.py
 ```
 
 One-time setup, run in Session 4 (Nov 18, 2026), not needed again:
