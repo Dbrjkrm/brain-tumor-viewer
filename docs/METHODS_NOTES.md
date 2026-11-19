@@ -10,14 +10,14 @@
 
 The three lists in `data_lists/` were committed and pushed to GitHub **before any model was run on any case**:
 
-- Commit that froze the lists: **to be filled in by the next commit** (see section 1.1).
+- Commit that froze the lists: **`93f180b30b5f298fe41d032d084bf436f79cb2e5`** (short form `93f180b`), Nov 19, 2026, 08:39:58 −05:00, pushed to https://github.com/Dbrjkrm/brain-tumor-viewer the same minute. No model had been run on any case.
 - Files: `data_lists/locked_test.csv` (399 cases, 346 patients), `data_lists/dev_pool.csv` (487 cases, 422 patients), `data_lists/seen_sanity.csv` (20 cases).
-- SHA-256 fingerprints at the freezing commit: `locked_test.csv` `88e9cbceb24dcceaa7905dad34beaa5cce30dadcbb46a30d3196568e259bacb6`; `dev_pool.csv` `e7cffe57e43bd08d465623bbb98bb9e05016054b1d843544960b98e53ffaae51`; `seen_sanity.csv` `1f32ab7a63811c4217480636a15fa5d33080fa89e78b705937466681bbd0ad82`; `case_status.csv` `cc35b3f87fa888b4dd5e23ad9cfa3fc203071f15f5ff6cbabe05a82abde1894d`.
+- SHA-256 fingerprints at the freezing commit (of the files as stored in Git, with LF line endings; checked with `git show 93f180b:data_lists/<file> | sha256sum`): `locked_test.csv` `88e9cbceb24dcceaa7905dad34beaa5cce30dadcbb46a30d3196568e259bacb6`; `dev_pool.csv` `e7cffe57e43bd08d465623bbb98bb9e05016054b1d843544960b98e53ffaae51`; `seen_sanity.csv` `1f32ab7a63811c4217480636a15fa5d33080fa89e78b705937466681bbd0ad82`; `case_status.csv` `cc35b3f87fa888b4dd5e23ad9cfa3fc203071f15f5ff6cbabe05a82abde1894d`.
 - Rule (CLAUDE.md): never edited once results exist. Any change found necessary is discussed first and stated publicly on the Methods page.
 
-### 1.1 Commit hash
+### 1.1 Why the hash is in a later commit
 
-Filled in after the freezing commit (a commit cannot contain its own hash).
+A commit cannot contain its own hash, so it was written here in the commit after `93f180b`. To check the lists were never changed afterwards: `git log --oneline -- data_lists/locked_test.csv` should show `93f180b` as the only commit that touched it.
 
 ---
 
