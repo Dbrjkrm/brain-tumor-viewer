@@ -22,8 +22,13 @@
 data/
 models/
 
+# --- Exports: private study packs (conversation records and screenshots, some showing a scan slice) ---
+exports/
+
 # --- Secrets: login tokens must never be uploaded ---
 kaggle.json
+access_token
+.kaggle/
 .env
 .synapseConfig
 

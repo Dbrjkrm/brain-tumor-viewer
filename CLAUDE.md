@@ -13,9 +13,11 @@ Read this file and the current session in PLAN.md before doing anything. PROJECT
 
 Sessions are 1 hour, split into two 30-minute halves (he works around Fajr). Each half must end at a natural stopping point with nothing left broken.
 
-1. **Start.** He says "Do session N from PLAN.md". Read that session. Restate its goal in two sentences and say what will exist at the end. Check the Session log for anything carried over.
-2. **Teach before typing.** Before writing code, explain in plain English what it will do and why. Introduce at most two or three new ideas per half. Use an everyday analogy when one helps.
-3. **Small steps.** Write a little, run it, look at the output together. Do not produce a large file in one go. He runs commands himself where practical.
+**Who does what (changed Nov 18, 2026, at his request).** Claude does all the building and runs every command itself: scripts, installs, Git, Kaggle runs, file edits. He follows along and learns; he does not run commands, click through steps or type anything mid-session. The only things he does himself are steps that truly need him: signing in to an account, accepting terms, phone verification, creating an API token, sending an email, or approving a download over about 2 GB.
+
+1. **Start.** He says "Do session N from PLAN.md". Read that session. Restate its goal in two sentences and say what will exist at the end. Check the Session log for anything carried over. Then give him **one list of every step only he can do this session**, all together, so he does them in one go before the building starts. If there are none, say so.
+2. **Explain as you go.** Before each step, say in plain English what it will do and why; after it, say what the output means. Introduce at most two or three new ideas per half. Use an everyday analogy when one helps. Do not stop to make him do things.
+3. **Small steps.** Write a little, run it, look at the output, explain it. Do not produce a large file in one go. If a step that truly needs him comes up unexpectedly, collect it and ask at the next natural stopping point, not in the middle of a step. Decisions that are his to make (a change to PLAN.md, for example) are also collected for that stopping point.
 4. **End of Half A.** Stop cleanly. Say in one line where things stand.
 5. **End of session, always, before anything else:**
    - Run the explain-back: ask him to "explain today in three sentences" (what we built, why, one thing that could go wrong). Correct gently, then ask one follow-up question.
@@ -66,8 +68,8 @@ Do not run ahead into later sessions, and do not add features that are not in PL
 - No real patient data from any other source, ever. No user uploads in v1.
 - The full dataset and all heavy compute stay in the cloud (Kaggle first, Colab second). The laptop has 8 GB RAM and no GPU.
 - Local scan files live in `C:\BrainTumorData`, never in the project folder.
-- **Before any step that downloads more than about 2 GB to the laptop, stop and say so**, with the size, and wait for his go-ahead.
-- Never put Kaggle or Synapse tokens in code, notebooks or commits. Use the platform's secrets feature.
+- **Before any step that downloads more than about 2 GB to the laptop, stop and say so**, with the size, and wait for his go-ahead. If it can be foreseen, put it on the start-of-session list instead.
+- Never put Kaggle or Synapse tokens in code, notebooks, commits, logs or exports. Use the platform's secrets feature. The Kaggle API token lives only in `C:\Users\debra\.kaggle\`, outside the project folder; never copy it anywhere else or print it.
 - Attribution follows `docs/DATA_ACCESS.md` exactly (TCIA dataset DOI, the BraTS papers, the source-dataset citations).
 
 ## Environment
@@ -76,12 +78,25 @@ Do not run ahead into later sessions, and do not add features that are not in PL
 - The project folder path contains spaces; quote paths in commands.
 - Accounts already set up: GitHub, Kaggle, Google Colab, Synapse.
 - Budget: about $50 total. Do not suggest paid services unless a free route has failed.
+- Python libraries live in the project's own virtual environment, `.venv` (ignored by Git). Run Python as `.\.venv\Scripts\python.exe`, not plain `python`. Installed Nov 18, 2026: pandas 3.1.1, openpyxl 3.1.5, numpy 2.5.5. pip downloads on this connection can stall; use `--timeout 60 --retries 5`.
+
+## Running Kaggle notebooks (planned Nov 18, 2026; not tested yet)
+
+Claude runs Kaggle notebooks from the laptop with the official Kaggle command-line tool, so he never has to click around Kaggle. Source: the official docs at https://github.com/Kaggle/kaggle-cli (README, docs/README.md, docs/kernels.md, docs/kernels_metadata.md), read Nov 18, 2026, when the main branch was version 2.2.5. Check them again before the first run.
+
+- **Install:** the `kaggle` package, into `.venv` (it needs Python 3.11 or newer). Record the version installed.
+- **One-time steps only he can do** (go on the start-of-session list of the first session that needs Kaggle): phone-verify the Kaggle account (Kaggle keeps GPU and internet switched off in notebooks until then), and create an API token at https://www.kaggle.com/settings/api ("Generate New Token"). Either Claude runs `kaggle auth login` and he approves it in the browser, or the token is saved as `C:\Users\debra\.kaggle\access_token`. Never in the project folder.
+- **A run is a folder** holding the notebook (`.ipynb`) or script (`.py`) and a `kernel-metadata.json` file: `id` `debrajkarmaker/<slug>`, `title`, `code_file`, `language` `python`, `kernel_type` `notebook` or `script`, `is_private` `true`, `enable_gpu` (only when the step needs a GPU), `enable_internet` (only when it must download something), `machine_shape` (for example `NvidiaTeslaT4` for GPU T4 ×2), and `dataset_sources` `["dschettler8845/brats-2021-task1"]`.
+- **Commands:** `kaggle kernels push -p <folder>` uploads and runs it (a full, non-interactive run); `kaggle kernels status debrajkarmaker/<slug>` says whether it is running, finished or failed; `kaggle kernels output debrajkarmaker/<slug> -p <folder>` downloads the files it wrote.
+- **Where the data is inside a run:** `/kaggle/input/datasets/dschettler8845/brats-2021-task1/` (seen in Session 3; the docs do not state it, so the notebook lists `/kaggle/input` first).
+- Downloaded outputs that contain scan pictures or scan data go to `C:\BrainTumorData`, never the project folder. Only ID lists, tables and code come into the repo.
+- Fallback if the command-line route fails: he signs in to Kaggle in Claude's browser pane and Claude drives the notebook there (as in Session 3).
 
 ## Commands
 
 Kept current. Only commands that have actually been run in this project are listed. Still to come: running the site locally, building it, deploying it, running the tests, and running the web-data script (added in the sessions that create them).
 
-Run every command from the project folder. Check the prompt ends in `Brain Tumor Viewer>` first; a new PowerShell window starts in `C:\Users\debra`, which is the wrong place.
+Claude runs these. They are listed so he can see what each one does, and repeat one if he ever wants to. Every command runs from the project folder; a new PowerShell window starts in `C:\Users\debra`, which is the wrong place.
 
 ```powershell
 # Go to the project folder (quotes needed because the path has spaces).
@@ -99,6 +114,16 @@ git push
 
 # Check which GitHub account this laptop is signed in to.
 gh auth status
+
+# Run a project script with the project's own Python (first used in Session 4).
+.\.venv\Scripts\python.exe scripts\04_look_at_mapping.py
+```
+
+One-time setup, run in Session 4 (Nov 18, 2026), not needed again:
+
+```powershell
+python -m venv .venv             # create the project's private Python toolbox
+.\.venv\Scripts\python.exe -m pip install --timeout 60 --retries 5 pandas openpyxl
 ```
 
 One-time setup, run in Session 1 (Nov 16, 2026), not needed again:
