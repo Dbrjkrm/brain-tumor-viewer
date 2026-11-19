@@ -2,7 +2,7 @@
 
 **What this file is for.** It holds the email Debraj sent to The Cancer Imaging Archive (TCIA) helpdesk to confirm that the way this project shows 8 demo cases follows TCIA's rules. The background is in `docs/DATA_ACCESS.md`, sections 4 and 9.
 
-**Status: sent Nov 18, 2026** by Debraj, from his university email account, to the TCIA helpdesk address. Waiting on a reply. When it arrives, record its date and exact wording in section 10 of `docs/DATA_ACCESS.md`.
+**Status: answered.** Sent Nov 18, 2026 by Debraj, from his university email account, to the TCIA helpdesk address. Answered by Tracy Nolan, TCIA Support Team (ticket TH-60610); reply and Debraj's follow-up recorded word for word on Nov 19, 2026 in `docs/DATA_ACCESS.md` sections 10.1 and 10.2. The reply answered question 3 (U7, closed), gave a caution on question 2 (Aspera checksums "have occasionally been unreliable"), and did not answer question 1 (U6). Debraj's follow-up, written by himself, asks question 1 again. Any further emails are written by Debraj himself; this draft was AI-written, and TCIA noticed.
 
 **The sent version is not word-for-word the draft below.** Before sending, Debraj made small edits: the wording about converting the cases to 8-bit ("converted to 8-bit"), and the numbering of the three questions. The exact sent text is in his sent mail; the draft below is kept as written on Nov 16, 2026, so this file does not guess at his wording. The three questions are the same.
 

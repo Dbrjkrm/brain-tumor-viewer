@@ -15,6 +15,8 @@ Sessions are 1 hour, split into two 30-minute halves (he works around Fajr). Eac
 
 **Who does what (changed Nov 18, 2026, at his request).** Claude does all the building and runs every command itself: scripts, installs, Git, Kaggle runs, file edits. He follows along and learns; he does not run commands, click through steps or type anything mid-session. The only things he does himself are steps that truly need him: signing in to an account, accepting terms, phone verification, creating an API token, sending an email, or approving a download over about 2 GB.
 
+**Outside emails (from Nov 19, 2026, at his request).** He writes every email to people outside the project (TCIA, the university, reviewers, labs) himself, in his own words. Claude does not draft them; Claude only checks the facts in his draft (IDs, numbers, licence names, what the project actually does). Reason: TCIA said the first, Claude-drafted email read as AI-written.
+
 1. **Start.** He says "Do session N from PLAN.md". Read that session. Restate its goal in two sentences and say what will exist at the end. Check the Session log for anything carried over. Then give him **one list of every step only he can do this session**, all together, so he does them in one go before the building starts. If there are none, say so.
 2. **Explain as you go.** Before each step, say in plain English what it will do and why; after it, say what the output means. Introduce at most two or three new ideas per half. Use an everyday analogy when one helps. Do not stop to make him do things.
 3. **Small steps.** Write a little, run it, look at the output, explain it. Do not produce a large file in one go. If a step that truly needs him comes up unexpectedly, collect it and ask at the next natural stopping point, not in the middle of a step. Decisions that are his to make (a change to PLAN.md, for example) are also collected for that stopping point.
@@ -82,7 +84,7 @@ Do not run ahead into later sessions, and do not add features that are not in PL
 
 ## Running Kaggle notebooks (planned Nov 18, 2026; login tested, runs not tested yet)
 
-Status Nov 18, 2026: the CLI is installed in `.venv` (`kaggle` 2.2.5, plus `six` 1.17.0, which kaggle 2.2.5 imports but does not install by itself) and logs in with the token in `C:\Users\debra\.kaggle\access_token`: `kaggle datasets files dschettler8845/brats-2021-task1` and `kaggle kernels list --mine` both work. Not yet tested: `kernels push`, `status` and `output`. Still waiting on him: phone verification, without which Kaggle keeps GPU and internet off.
+Status Nov 18, 2026: the CLI is installed in `.venv` (`kaggle` 2.2.5, plus `six` 1.17.0, which kaggle 2.2.5 imports but does not install by itself) and logs in with the token in `C:\Users\debra\.kaggle\access_token`: `kaggle datasets files dschettler8845/brats-2021-task1` and `kaggle kernels list --mine` both work. Not yet tested: `kernels push`, `status` and `output`. Phone verification: done by him, confirmed Nov 19, 2026, so GPU and internet should now be available in notebooks. Not tested with a run yet, on purpose: Session 7 is the first GPU run.
 
 Claude runs Kaggle notebooks from the laptop with the official Kaggle command-line tool, so he never has to click around Kaggle. Source: the official docs at https://github.com/Kaggle/kaggle-cli (README, docs/README.md, docs/kernels.md, docs/kernels_metadata.md), read Nov 18, 2026, when the main branch was version 2.2.5. Check them again before the first run.
 

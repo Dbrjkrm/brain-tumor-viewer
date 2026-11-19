@@ -26,10 +26,10 @@ The same BraTS 2021 scans can be obtained through three "doors". Each door has i
 | Synapse (Sage Bionetworks) | The platform that ran the BraTS challenge | CC BY-NC (non-commercial), accepted by clicking through with an account | One small spreadsheet only (the ID mapping file). Never for scans we display |
 | Kaggle | A cloud notebook platform where another user has uploaded a copy of the BraTS 2021 training data (section 8.4) | Kaggle licence field: "Data files © Original Authors", which is not an open licence. The page repeats the 2021 Synapse challenge conditions. It never mentions TCIA's CC BY 4.0 | Where the model runs, because the laptop cannot hold the data. Never the licence basis for anything shown |
 
-The route, agreed by Debraj on Nov 16, 2026:
+The route, agreed by Debraj on Nov 16, 2026, and changed with his agreement on Nov 19, 2026 (items 1 and 2):
 
-1. **Display.** The only scan files that ever go on the website are TCIA's files, or files proven identical to TCIA's by checksum. A checksum is a short fingerprint computed from a file's contents: two files with the same fingerprint are the same file.
-2. **Compute.** The model runs in the cloud on the Kaggle-hosted copy. That copy must be shown to match TCIA's files using TCIA's own checksum list (section 8.2) before any case from it is displayed.
+1. **Display.** The only scan files that ever go on the website are TCIA's own files: the 8 demo cases are downloaded straight from the TCIA package (single files can be selected, section 8.2). Each is checked by eye in 3D Slicer, which is the main check that the files look right, and compared value by value with its Kaggle copy (same grid, same orientation header, same value in every voxel), so the AI outline made from the Kaggle copy is known to sit exactly on the displayed scan. If any differ, work stops for a discussion. (Until Nov 19, 2026 the rule was "TCIA's files, or files proven identical to TCIA's by checksum". A checksum is a short fingerprint computed from a file's contents. TCIA's reply, section 10.1, warned that Aspera package checksums "have occasionally been unreliable".)
+2. **Compute.** The model runs in the cloud on the Kaggle-hosted copy (section 8.4), and every reported number comes from that copy. Comparing it with TCIA's checksum list (section 8.2, Buffer B1) is now a secondary check: the result is recorded and reported, but a mismatch does not block launch. Limitation, stated on the Methods page: the full evaluation runs on the Kaggle copy, and only the 8 demo cases are compared value by value with TCIA's files.
 3. **Synapse** is used only to get the file that maps BraTS 2021 case IDs to earlier BraTS years, which the leakage check needs.
 4. **The 8 demo cases** are converted to 8-bit and compressed for the web. That is a change to the original files, and CC BY 4.0 requires us to say so (section 2.2).
 
@@ -115,7 +115,17 @@ Copied from the TCIA page, where they sit under "please be specific and also cit
 5. Calabrese, E., Villanueva-Meyer, J., Rudie, J., Rauschecker, A., Baid, U., Bakas, S., Cha, S., Mongan, J., & Hess, C. (2022). The University of California San Francisco Preoperative Diffuse Glioma MRI (UCSF-PDGM) (Version 1) [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/tcia.bdgf-8v37
 6. Bakas, S., Sako, C., Akbari, H., Bilello, M., Sotiras, A., Shukla, G., Rudie, J. D., Flores Santamaria, N., Fathi Kazerooni, A., Pati, S., Rathore, S., Mamourian, E., Ha, S. M., Parker, W., Doshi, J., Baid, U., Bergman, M., Binder, Z. A., Verma, R., … Davatzikos, C. (2021). Multi-parametric magnetic resonance imaging (mpMRI) scans for de novo Glioblastoma (GBM) patients from the University of Pennsylvania Health System (UPENN-GBM) (Version 2) [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.709X-DN49
 
-A gap we noticed (UNCONFIRMED, see section 9): the same page lists seven related collections. Three of them (IvyGAP, CPTAC-GBM and ACRIN-FMISO-Brain) have no citation in this list of six.
+A gap we noticed (UNCONFIRMED, see section 9): the same page lists seven related collections. Three of them (IvyGAP, CPTAC-GBM and ACRIN-FMISO-Brain) have no citation in this list of six. (Settled Nov 19, 2026 by TCIA's reply, section 10.1: each displayed case cites its own source collection from the mapping table. See U7 and U15.)
+
+### 3.5 Credit for the compute data (added Nov 19, 2026)
+
+The model ran on a copy of the BraTS 2021 training data that one Kaggle user uploaded (section 8.4). It is never displayed, but every number on the site was computed from it, so it is credited:
+
+> Schettler, D. (2021). BRaTS 2021 Task 1 Dataset (Version 1) [Data set]. Kaggle. https://www.kaggle.com/datasets/dschettler8845/brats-2021-task1
+
+Put next to it a line saying it was used to run the model only, and that the displayed scans are TCIA's own files.
+
+That Kaggle page also copies the BraTS 2021 Synapse conditions, which ask for the three papers in 3.3 (already cited), the two TCGA segmentation-label citations (items 1 and 2 in 3.4, already cited) and an acknowledgement sentence naming "Synapse ID (syn25829067)". Copy that sentence exactly from the Kaggle page in Session 26; it is not retyped here from memory.
 
 ---
 
@@ -244,7 +254,7 @@ Conditions we must meet every time:
 - The data citation with its DOI, the acknowledgement sentence, the three papers and the six dataset citations (section 3).
 - A link to the CC BY 4.0 licence and a plain statement of what we changed (section 2.2).
 - A link to the TCIA data usage policy, and a request that anyone reusing the demo files does the same (section 4).
-- The displayed files are TCIA's, or proven identical to TCIA's by checksum (section 1).
+- The displayed files are TCIA's own files, downloaded from the TCIA package and checked as in section 1 (changed Nov 19, 2026).
 
 Not allowed:
 
@@ -270,7 +280,7 @@ Both are linked from the TCIA collection page and saved in `C:\BrainTumorData\me
 - The server reported both files as last modified on Sep 14, 2023. The downloaded sizes match the sizes the server reported.
 - TCIA describes the first as a "Manifest of case identifiers between BraTS and TCIA" and the second as a "Spreadsheet list of new (NIfTI) series files with no TCIA DICOM equivalent".
 - `NotPreviouslyInTCIA.csv` has no header row. It has 1,967 lines, and each line is the path of one file inside the TCIA package, for example a line ending `new-not-previously-in-TCIA/BraTS2021_00118/BraTS2021_00118_flair.nii.gz`. Both training-set and validation-set paths appear.
-- `BraTS2021_MappingToTCIA.xlsx` has not been opened yet. Its columns are recorded in Session 4 or 5 (UNCONFIRMED until then).
+- `BraTS2021_MappingToTCIA.xlsx` (opened Nov 19, 2026, Session 5; CONFIRMED): one sheet, `TCIA`, 1,479 data rows (1,251 segmentation training, 219 validation, 9 used only for the separate MGMT task). Columns exactly as written: `Data Collection (as on TCIA+additional)`, `Site ID`, `PatientID on TCIA Radiology Portal`, `Study date (m/d/yyyy) per PatientID`, `BraTS2021 ID`, `Segmentation (Task 1) Cohort`, `MGMT (Task 2) Cohort`, `MGMT value`. Every one of the 1,251 training cases appears exactly once. Cases with no earlier TCIA copy have `new-not-previously-in-TCIA` as their patient ID; there are 351 such training cases, and all 351 (and no others) appear in `NotPreviouslyInTCIA.csv`. The `Site ID` agrees with the Synapse mapping file's `Site No` for 1,250 of 1,251 cases; the exception is `BraTS2021_01162` (Collection 9): 24 here, 23 in the Synapse file. It is an unseen case and its status does not depend on the site number.
 
 ### 8.2 The TCIA package and its checksum list (listing CONFIRMED, transfer UNCONFIRMED)
 
@@ -378,7 +388,7 @@ How far to trust the numbers below: they were first read off the screen, then ch
 - **Cases 00495 and 00621 are in the big archive as well as in their own archives.** All 10 files (5 per case) have the same SHA-256 fingerprint in both places, so they are plain duplicates, not two versions. Doubt D4 is closed. Why they were packed separately is still not stated anywhere.
 - **Case 00495** (from its own archive, where the files sit loose with no folder): flair 2,503,035 bytes, seg 37,663, t1 2,652,585, t1ce 2,689,385, t2 2,428,304.
 - **Case 00118**, the case whose sizes we recorded from TCIA's listing: flair 1,872,411 bytes, seg 128,462, t1 1,936,184, t1ce 1,896,946, t2 2,086,035. Divided by 1,048,576 (and the seg file by 1,024) these are 1.79 MB, 125.45 KB, 1.85 MB, 1.81 MB and 1.99 MB, which are exactly the five sizes TCIA's listing shows. So for this one case the files are the same size in both copies. Same size is good evidence but not proof of the same contents; only the checksum comparison in B1 can show that. Doubt D5 is much weaker but stays open.
-- **Kaggle account:** the weekly quota shown is 30 hours of GPU and 20 hours of TPU, with none used. The account is not phone-verified, which Kaggle normally requires before GPU or internet can be switched on in a notebook.
+- **Kaggle account:** the weekly quota shown is 30 hours of GPU and 20 hours of TPU, with none used. The account is not phone-verified, which Kaggle normally requires before GPU or internet can be switched on in a notebook. (Update: Debraj phone-verified the account himself and confirmed it on Nov 19, 2026. Not yet tested with a GPU run; Session 7 is the first.)
 
 One case opened with nibabel 5.4.2 (case 00495, chosen only because its archive is small and quick to unpack; it was unpacked to `/kaggle/temp`, a scratch folder that is wiped when the session ends):
 
@@ -411,12 +421,14 @@ What does not change: the display rule in section 1. If the checksums in B1 do n
 | # | Open item | Blocks publishing? | When it gets checked |
 |---|---|---|---|
 | U1 | Closed Nov 16, 2026. The mapping file was downloaded and its columns recorded in section 8.3. Still open from it: whether publishing ID lists derived from a CC BY-NC file needs anything beyond attribution | No | Session 33 review |
-| U2 | Columns of `BraTS2021_MappingToTCIA.xlsx` | No | Session 4 or 5 |
+| U2 | Closed Nov 19, 2026 (Session 5). Columns recorded in section 8.1 | No | Done |
 | U3 | Whether a single-file Aspera transfer from the TCIA package works on this laptop | No | Aspera session (to be scheduled) |
-| U4 | Format and checksum type of the `.sums` file | **Yes** | Aspera session (Buffer B1); also asked in the helpdesk email sent Nov 18, 2026 |
-| U5 | Whether the Kaggle-hosted copy is identical to TCIA's files. Its name, uploader and stated licence were recorded on Nov 16, 2026 (section 8.4). Still open: the comparison itself, including whether the compressed files are byte-for-byte the same (doubts D3 and D5) | **Yes** | Buffer B1 (compare) |
-| U6 | Whether hosting 8 derived cases makes this project a "Data Analysis Center" under TCIA's policy, and whether TCIA wants anything beyond section 4 | **Yes** (PLAN.md 5.9: launch waits on the answer, the build does not) | Helpdesk email, sent Nov 18, 2026; waiting on the reply (section 10) |
-| U7 | Whether IvyGAP, CPTAC-GBM and ACRIN-FMISO-Brain need their own citations when a displayed case comes from one of them | **Yes**, if a demo case comes from one of them | Helpdesk email, sent Nov 18, 2026; waiting on the reply. If no answer, cite them anyway from their TCIA pages |
+| U4 | Format and checksum type of the `.sums` file. TCIA's reply (Nov 19, 2026, section 10.1) did not say which type, but warned that "Checksums for Aspera packages have occasionally been unreliable" and suggested checking the images by eye | No (changed Nov 19, 2026: the checksum comparison is now a secondary check, section 1) | Aspera session (Buffer B1) |
+| U5 | Whether the Kaggle-hosted copy is identical to TCIA's files. Its name, uploader and stated licence were recorded on Nov 16, 2026 (section 8.4). Still open: the comparison itself, including whether the compressed files are byte-for-byte the same (doubts D3 and D5). TCIA's caution applies here too: a checksum mismatch could come from an unreliable checksum list rather than a different file, so a mismatch alone does not prove the Kaggle copy is wrong (section 10.1) | No (changed Nov 19, 2026: only TCIA's own files are displayed, and the 8 demo cases are compared value by value in Session 14; the result here is reported either way) | Buffer B1 (compare, secondary) |
+| U6 | Whether hosting 8 derived cases makes this project a "Data Analysis Center" under TCIA's policy, and whether TCIA wants anything beyond section 4 | **Yes** (PLAN.md 5.9: launch waits on the answer, the build does not) | Still open. TCIA's reply of Nov 19, 2026 did not answer it; Debraj's follow-up of the same day asks it again (sections 10.1, 10.2). Waiting |
+| U7 | Closed Nov 19, 2026 by TCIA's reply (section 10.1): cite each demo case's own source collection, read from the mapping table on the collection page (`BraTS2021_MappingToTCIA.xlsx`), plus the BraTS papers. So a case from IvyGAP, CPTAC-GBM or ACRIN-FMISO-Brain cites that collection too | No | Done. Applied when the 8 cases are chosen (Session 14) |
+| U15 | New Nov 19, 2026. Some cases have no TCIA source collection to cite: in the mapping table their collection is `Collection1`, `Collection3`, `Collection 5`, `Collection 7`, `Collection 9`, `UCSF-PDGM_Additional` or `UPENN-GBM_Additional`, and their TCIA patient ID is `new-not-previously-in-TCIA`. For these, the plan is to cite the BraTS 2021 dataset DOI and papers and name the collection label as the table gives it (OUR READING; TCIA has not said) | **Yes**, if a demo case is one of these | Session 14, when the 8 are chosen; ask TCIA if one is picked |
+| U16 | New Nov 19, 2026. Whether UTM Library's copyright office has any objection to the planned use (TCIA suggested asking a supervisor or the school's legal team; Debraj has no supervisor on this project). Debraj writes and sends the email himself, the week of Nov 19, 2026. Whatever the library says is recorded word for word in section 10 | **Yes**: the data repo is created only if the reply raises no objection (an explicit yes is not required) | Before Session 21 |
 | U8 | Subject counts disagree: 1,480 (TCIA table), "about 1,479" (package note), 1,470 (Synapse 2023 page; 1,251 + 219 in the paper) | No | Count the cases ourselves in Sessions 4 and 5 |
 | U9 | Synapse ID in the acknowledgement: syn25829067 (TCIA) or syn25829070 (Synapse rules page) | No | Follow TCIA; mention in the helpdesk email only if there is room |
 | U10 | The CC BY 4.0 legal code was not read in full; only the deed was | No | Session 33 review |
@@ -431,9 +443,40 @@ What does not change: the display rule in section 1. If the checksums in B1 do n
 
 | Date | Who | Question | Answer |
 |---|---|---|---|
-| Sent Nov 18, 2026 (drafted Nov 16; Debraj made small wording edits before sending) | TCIA helpdesk, by email from Debraj's university account | The three questions in `docs/TCIA_HELPDESK_EMAIL.md`: (1) is the planned hosting of 8 converted cases consistent with TCIA's policy, and is it "mirroring" or a Data Analysis Center (U6); (2) is `RSNA-ASNR-MICCAI-BraTS-2021.sums` the right file to compare the Kaggle copy against, and which checksum type it uses (U4, U5); (3) should IvyGAP, CPTAC-GBM or ACRIN-FMISO-Brain be cited if a demo case comes from one of them (U7) | **Waiting.** None yet |
+| Sent Nov 18, 2026 (drafted Nov 16; Debraj made small wording edits before sending) | TCIA helpdesk, by email from Debraj's university account | The three questions in `docs/TCIA_HELPDESK_EMAIL.md`: (1) is the planned hosting of 8 converted cases consistent with TCIA's policy, and is it "mirroring" or a Data Analysis Center (U6); (2) is `RSNA-ASNR-MICCAI-BraTS-2021.sums` the right file to compare the Kaggle copy against, and which checksum type it uses (U4, U5); (3) should IvyGAP, CPTAC-GBM or ACRIN-FMISO-Brain be cited if a demo case comes from one of them (U7) | **Answered** by Tracy Nolan, TCIA Support Team, ticket TH-60610 (recorded Nov 19, 2026; text in 10.1). Answers U7. Gives a caution on checksums (U4, U5). Does not answer U6 |
+| Recorded Nov 19, 2026 (sent by then), through the TCIA portal, ticket TH-60610. Written by Debraj himself | Tracy Nolan, TCIA Support Team | Follow-up (text in 10.2): says the 8 cases will be taken straight from the TCIA package and cited with both BraTS papers and each case's source collection, and checked by eye; asks again whether hosting the 8 converted cases on a small free education site is OK under TCIA's policy (U6) | **Waiting** |
 
-Debraj sends the email himself. When a reply arrives, its date and exact wording are added to this table.
+Debraj sends emails himself and, from Nov 19, 2026, writes them himself too (TCIA said the first email read as AI-written); Claude only checks the facts in them. When a reply arrives, its date and exact wording are added to this table.
+
+### 10.1 TCIA's reply, ticket TH-60610 (verbatim)
+
+Recorded Nov 19, 2026. Copied exactly as Debraj received it, including its spelling and spacing.
+
+> Hello Debraj,
+> Thank you for your interest in The Cancer Imaging Archive (TCIA) and in Questions about using BraTS 2021 cases on a non-commercial education website.
+> First, I can tell that AI composed this email , since it's asking questions pretty strangely.
+> (1) Which 8 cases did you pick from RSNA-ASNR-MICCAI-BraTS-2021 DOI: 10.7937/jc8x-9874 ? The Collection Page at that DOI has a mapping table to tell you the source Collection for each of your BraTS case ID, so that you can cite both the 2 BraTS Challenge papers (2017) and the source collection itself.
+> (2) Did you actually pick the case ID from the BraTS Challenges kaggle sites instead of directly from TCIA? Maybe you should cite those sources, and talk with your supervisor, and maybe your school's legal team about whether your proposed usage is ok.
+> (3) Checksums for Aspera packages have occasionally been unreliable. I suggest, especially for the small number of cases, that you look at the images with your eyes and your supervisor, to make sure they look ok.
+> (4) About the "source data" - again, if you go to the RSNA-ASNR-MICCAI-BraTS-2021 DOI: 10.7937/jc8x-9874 Collection Page at that DOI, there is a mapping table to tell you the source Collection for each of your BraTS case ID. Then you'll know which to cite in your references.
+> As you have additional questions, please reply to this message via the portal: TH-60610 or call the number listed below.
+
+What it settles (OUR READING):
+
+- **U7 closed.** Each demo case cites its own source collection, read from the mapping table on the collection page (`BraTS2021_MappingToTCIA.xlsx`, section 8.1), plus the BraTS papers. "The 2 BraTS Challenge papers (2017)" is her wording; it does not say which two. We keep all three papers in section 3.3, since citing one more paper costs nothing.
+- **Checksums are a weaker proof than we assumed.** She says Aspera package checksums "have occasionally been unreliable" and suggests looking at the images by eye. See U4 and U5.
+- **U6 not answered.** She did not say whether hosting the 8 cases is OK under TCIA's policy, or whether it makes us a Data Analysis Center. She suggests asking a supervisor and the school's legal team. Debraj has no supervisor on this project.
+- **Kaggle as a source.** She suggests citing the Kaggle source if case IDs were picked there.
+
+### 10.2 Debraj's follow-up, sent through the portal (verbatim)
+
+Recorded Nov 19, 2026 (sent by then). Written by Debraj himself.
+
+> Hi Tracy,
+> Thanks for the quick reply. I haven't picked the 8 cases yet; I'll take them straight from the TCIA package and cite both BraTS papers plus each case's source collection from your mapping table. I'll also check each case by eye.
+> One question left: is it OK under TCIA's policy to host those 8 cases (converted to 8-bit, with full attribution) on a small free education site?
+> Thanks,
+> Debraj Karmaker
 
 ---
 

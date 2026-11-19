@@ -48,7 +48,7 @@ Source links:
 - ~~The exact name and columns of the mapping file.~~ Answered in Session 2: `BraTS2023_2017_GLI_Mapping.xlsx` (Synapse syn51615438, in the BraTS 2023 project, not the 2021 one). Columns in `docs/DATA_ACCESS.md` 8.3.
 - ~~Whether the TCIA Aspera package lets you download single cases.~~ Answered in Session 2: single files can be selected in the browser listing; an actual transfer (needs the Aspera client) is tested in Buffer B1.
 - NiiVue's left-right handling and phone performance. Checked in Sessions 18 and 34.
-- Current free GPU limits on Kaggle and Colab. Kaggle answered in Session 3: the account shows 30 GPU hours a week, usable only after phone verification (not done yet). Colab was not checked; it is the fallback and is checked only if Kaggle fails.
+- Current free GPU limits on Kaggle and Colab. Kaggle answered in Session 3: the account shows 30 GPU hours a week, usable only after phone verification (done by Debraj, confirmed Nov 19, 2026; first GPU run is Session 7). Colab was not checked; it is the fallback and is checked only if Kaggle fails.
 - The bundle's exact inference settings (normalisation, sliding window). Read from `inference.json` in Session 7.
 
 ## 4. Where the brief was wrong or unrealistic
@@ -110,6 +110,7 @@ Expected yes. SegResNet is small, and one case should take seconds on a free T4.
 - **Licence we rely on for public display:** TCIA's CC BY 4.0 release, with full attribution (dataset DOI, the three BraTS papers, six source-dataset citations, the TCGA acknowledgement sentence).
 - **Where compute reads the data:** a cloud copy (the Kaggle-hosted BraTS 2021 dataset, or the official Synapse copy pulled straight into the cloud notebook).
 - **The gap to close in Session 2:** show that the files we display are the same files TCIA licenses. First choice: download only the 8 demo cases from the TCIA package and compare checksums. If the package is all-or-nothing, ask the TCIA helpdesk to confirm in writing, and record the answer in `docs/DATA_ACCESS.md`.
+- **Changed Nov 19, 2026 (agreed with Debraj).** The 8 demo cases are downloaded straight from the TCIA package (single files can be selected) and only those files are displayed. Kaggle is for compute only. Each of the 8 is compared value by value with its Kaggle copy (grid, orientation header, every voxel), which shows the AI outline (made from the Kaggle copy) sits exactly on the displayed scan. The Kaggle-vs-TCIA checksum comparison in Buffer B1 becomes a secondary check, because TCIA said Aspera checksums "have occasionally been unreliable"; the 3D Slicer check by eye in Session 14 is the main check that the files look right. The full evaluation still runs on the Kaggle copy; that is stated as a limitation.
 - **Synapse terms:** read them in Session 2 and write down what they say about redistribution. If they forbid redistributing files obtained through Synapse, the displayed files must come from TCIA or from a copy shown to be identical.
 
 ### 5.6 Where the demo files live
@@ -129,7 +130,7 @@ Dice and HD95 for WT, TC and ET, per case. Reported as mean ± SD (as the brief 
 | Risk | Likelihood | Response |
 |---|---|---|
 | Mapping file not obtainable | Medium | Fallback in 5.3 |
-| Cannot show displayed files match the TCIA release | Medium | TCIA helpdesk email in Session 2; site launch waits on the answer, the build does not |
+| Cannot show displayed files match the TCIA release | Medium | Changed Nov 19, 2026: display TCIA's own files for the 8 demo cases, compared value by value with the Kaggle copy. Hosting question (U6) asked of TCIA, and UTM Library's copyright office asked by Debraj; site launch waits on both, the build does not |
 | Kaggle GPU needs phone verification or quota runs out | Low | Colab; CPU run |
 | Pipeline bug (wrong channel order, wrong labels) | Medium | Session 10 tests: seen-case sanity run and channel-swap test |
 | Left-right flipped in the viewer | Medium | Session 18 proof against 3D Slicer; re-checked in the Fable review |
@@ -207,7 +208,7 @@ Works when: `docs/DATA_ACCESS.md` states the chosen route, what is still unconfi
 
 #### Session 3: Wed Nov 18. First look at a real case (in the cloud)
 Half A
-- [ ] On Kaggle: confirm GPU access is enabled (phone verification if asked) and note the weekly quota shown in the account. Half done on Nov 16, 2026: quota noted (30 GPU hours a week); the account is not phone-verified yet, so GPU access is not enabled. Debraj does the verification himself; it is on the start-of-session list of Buffer B1
+- [x] On Kaggle: confirm GPU access is enabled (phone verification if asked) and note the weekly quota shown in the account. Half done on Nov 16, 2026: quota noted (30 GPU hours a week); the account was not phone-verified yet. **Phone verification done by Debraj himself (some time before Nov 19); he confirmed it on Nov 19, 2026.** GPU access has not been tested with a run on purpose: Session 7 is the first GPU run
 - [x] Find the hosted BraTS 2021 training dataset. Record its exact name, uploader and case count in `docs/DATA_ACCESS.md`
 - [x] New notebook: list one case's files and their sizes
 
@@ -236,7 +237,7 @@ Works when: there is a table of counts per status that sums correctly.
 #### Session 5: Fri Nov 20. Leakage check B and locking the test set
 Half A
 - [ ] Join the TCIA crosswalk to `case_status.csv`. Add a `source` column (collection or institution, or "not in TCIA")
-- [ ] Look for contradictions: any `new_in_2021` case whose TCIA subject is in the BraTS 2018 TCGA lists. Resolve each one by treating it as seen
+- [ ] Look for contradictions: any `new_in_2021` case whose TCIA subject is in the BraTS 2018 TCGA lists. Resolve each one by treating it as seen. (Changed Nov 19, 2026, with Debraj's agreement: no outside TCGA list is downloaded; the check uses the TCIA crosswalk and the mapping file already on the laptop, plus a count of the 285 seen cases by source. Reason in the Session log)
 - [ ] Spot-check 5 cases by hand, end to end
 
 Half B
@@ -262,10 +263,10 @@ Half B
 - [ ] Log weak answers in the Session log
 
 #### Buffer B1: Sun Nov 22
-Start-of-session list for Debraj (one-time, if not already done): phone-verify the Kaggle account; ~~create a Kaggle API token~~ (done Nov 18, 2026); be ready to approve anything the IBM Aspera installer or download page asks of the browser.
+Start-of-session list for Debraj (one-time, if not already done): ~~phone-verify the Kaggle account~~ (done; confirmed by Debraj Nov 19, 2026); ~~create a Kaggle API token~~ (done Nov 18, 2026); be ready to approve anything the IBM Aspera installer or download page asks of the browser.
 - [x] Set up the Kaggle command-line tool in `.venv` and check it can see the account. Record its version. Done early, Nov 18, 2026: `kaggle` 2.2.5 (plus `six` 1.17.0), login works (see CLAUDE.md)
 - [ ] Aspera test (moved from Session 2): install the IBM Aspera client, download `RSNA-ASNR-MICCAI-BraTS-2021.sums` (47.5 MB) and one 125 KB label file. Record the checksum type in `docs/DATA_ACCESS.md`
-- [ ] Compare the Kaggle copy's checksums against the `.sums` list (needs Session 3's Kaggle dataset; run through the Kaggle command-line tool). Record the result
+- [ ] Compare the Kaggle copy's checksums against the `.sums` list (needs Session 3's Kaggle dataset; run through the Kaggle command-line tool). Record the result. **Secondary check (changed Nov 19, 2026):** a mismatch is recorded and reported, but does not block launch; see section 5.5
 
 ### Stage 2: Running the model
 
@@ -371,8 +372,8 @@ Half A
 
 Half B
 - [ ] Download the 12 shortlisted cases and predictions to `C:\BrainTumorData\cases` (expected under 300 MB; check the size before downloading)
-- [ ] Check each in 3D Slicer. Pick the final 8. Write 2 sentences per case on what it shows
-- [ ] If the TCIA single-case download is possible, compare checksums for these 8 now
+- [ ] Check each in 3D Slicer. Pick the final 8. Write 2 sentences per case on what it shows. This check by eye is the main check that the files look right (TCIA's advice, Nov 19, 2026)
+- [ ] Download the final 8 cases from the TCIA package (Aspera, about 8 MB each) to `C:\BrainTumorData\tcia_cases`. Compare each with its Kaggle copy value by value (grid, orientation header, every voxel); if any differ, stop and discuss. Open each TCIA case in Slicer and check it by eye. Only these TCIA files are made into web files (changed Nov 19, 2026; replaces "compare checksums for these 8")
 - [ ] Explain today in three sentences
 
 Works when: 8 case IDs are fixed, with notes, including at least 2 failures.
@@ -390,7 +391,7 @@ Half A: checkpoint (metrics and results). PI questions:
 
 Half B
 - [ ] Write `scripts/prepare_web_case.py`: clip intensities, convert to 8-bit, keep orientation information, save `.nii.gz`; write masks and a per-case `case.json` with its metrics
-- [ ] Run it on one case. Record file sizes
+- [ ] Run it on one case, reading the TCIA file (Session 14). Record file sizes
 - [ ] Reload the output in Slicer and confirm nothing flipped
 
 ### Stage 4: The viewer
@@ -436,7 +437,7 @@ Works when: two side-by-side screenshot pairs agree.
 
 #### Session 19: Mon Dec 7. Case picker and scores
 Half A
-- [ ] Run `prepare_web_case.py` for all 8 cases. Write `cases.json` listing them
+- [ ] Run `prepare_web_case.py` for all 8 cases, from the TCIA files. Write `cases.json` listing them
 - [ ] Case picker in the page. Loading indicator while a case downloads
 
 Half B
@@ -460,7 +461,7 @@ Works when: three pages exist and the banner cannot be missed.
 
 #### Session 21: Wed Dec 9. Put it on the internet
 Half A
-- [ ] Create `brain-tumor-viewer-data` with the 8 web cases and LICENSE/ATTRIBUTION. Enable GitHub Pages. (Skip if the TCIA confirmation from Session 2 is still open: then deploy with one placeholder case and note it)
+- [ ] Create `brain-tumor-viewer-data` with the 8 web cases and LICENSE/ATTRIBUTION. Enable GitHub Pages. (Skip if the TCIA confirmation (U6) is still open, or if UTM Library's copyright office has objected or not yet replied: then deploy with one placeholder case and note it. Changed Nov 19, 2026: the library gate is "no objection", not an explicit yes; whatever the library says is recorded in `docs/DATA_ACCESS.md` section 10)
 - [ ] Point the site at the data URL
 
 Half B
@@ -487,13 +488,13 @@ PI questions:
 
 #### Session 26: Mon Dec 14. Results & Methods text, part 1
 - [ ] Dataset, model and leakage-check sections, adapted from `METHODS_NOTES.md`
-- [ ] Full citations and attribution block as TCIA requires
+- [ ] Full citations and attribution block as TCIA requires, including each demo case's own source collection (U7, U15) and the Kaggle compute-data credit (`docs/DATA_ACCESS.md` 3.5, added Nov 19, 2026)
 - [ ] Explain today in three sentences
 
 #### Session 27: Tue Dec 15. Results & Methods text, part 2
 - [ ] Results section with the generated table and two figures
 - [ ] Two failure cases with images and an honest explanation, including what is not known
-- [ ] Limitations section
+- [ ] Limitations section (include the notes in `docs/METHODS_NOTES.md` "Limitations", among them that the full evaluation runs on the Kaggle copy and only the 8 demo cases are compared value by value with TCIA's files)
 - [ ] Explain today in three sentences
 
 #### Session 28: Wed Dec 16. About page and README
